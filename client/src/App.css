@@ -1,0 +1,8 @@
+.App { 
+  /* background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); */
+  /* background-image: radial-gradient(circle at 51.97% 27.48%, #ff6bff 0, #c85bff 16.67%, #8a49ee 33.33%, #4833c0 50%, #001e91 66.67%, #000c67 83.33%, #000043 100%); */
+  /* background-color: #E5E5E5; */
+  background-image: url("https://images.unsplash.com/photo-1501746434055-a889578ce700?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1366&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+} 

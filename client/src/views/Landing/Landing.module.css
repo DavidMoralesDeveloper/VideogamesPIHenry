@@ -1,0 +1,36 @@
+.contenerdor {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: auto;
+  height: auto;
+  background-image: url(https://cdn.wallpapersafari.com/8/39/8A64JK.png);
+  background-size: cover;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  z-index: 0;
+  align-content: center;
+  background-color: black;
+}
+
+.buttonCenter {
+  width: 260px;
+  height: 35px;
+  background: #87847f;
+  border: 1px solid rgb(255, 255, 255);
+  cursor: pointer;
+  border-radius: 2px;
+  color: #fff;
+  font-family: "Exo", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 6px;
+  margin: 0;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

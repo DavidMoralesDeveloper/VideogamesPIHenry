@@ -1,0 +1,107 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.formcontainer {
+  width: 50%;
+  height: 50%;
+  padding-top: 3%;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px 20px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+.inputs {
+  padding: 10px;
+}
+
+.fechaYraiting{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+
+.inputfecha{
+  width: 50%;
+  padding: 5px 20px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+
+.genresValues {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.genresvaluesdiv{
+  padding: 10px;
+  text-align: center;
+}
+
+.containergenres{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.genresValues{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+select {
+  background: transparent;
+  font-size: 14px;
+  height: 30px;
+  padding: 5px;
+  width: 250px;
+}
+
+.namePlataforma{
+  text-align: center;  
+}
+
+.platdiv{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+ 
+}
+
+.platdiv label{
+  padding-right: 20px;
+}
+
+
+
+

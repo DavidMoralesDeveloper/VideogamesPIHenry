@@ -1,0 +1,84 @@
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  backdrop-filter: blur(10px);
+ 
+
+}
+
+.imgBackground{
+  filter: blur(20px);
+  width: 100%;
+  
+}
+.conteiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  
+}
+
+.img {
+  height: 500px;
+  width: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.info {
+  height: 100%;
+  width: 40%;
+  background-color: #87847f;
+  color: #fff;
+  text-align: center;
+}
+
+.infoextra{
+  display: flex;
+  justify-content: center;
+   align-items: center;
+ }
+
+.infoname{
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.infodescription{
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+
+.uno{
+  width: 30%;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+.dos{
+  width: 30%;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.infoextraUl{
+  display: flex;
+  justify-content: center;
+   align-items: center;
+}
+.tres{
+  width: 30%;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+.cuatro{
+  width: 30%;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}

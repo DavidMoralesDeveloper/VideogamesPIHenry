@@ -1,0 +1,56 @@
+.container {
+  /* border-radius: 15px;
+  border: 1px solid black; */
+  /* background-color: rgb(165, 237, 9); */
+}
+
+.butons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.buttonFilterNav {
+  width: 260px;
+  height: 40px;
+  background: #87847f;
+  border: 1px solid #87847f;
+  cursor: pointer;
+  border-radius: 2px;
+  color: #fff;
+  font-family: "Exo", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  padding: 6px;
+  margin: 30px;
+  border-radius: 5px;
+}
+
+/* ****************filter navs********************** */
+
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.filterBar select {
+  background-color: #05365e;
+  color: white;
+  padding: 12px;
+  width: 250px;
+  height: auto;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+

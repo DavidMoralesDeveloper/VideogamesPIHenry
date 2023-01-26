@@ -1,0 +1,35 @@
+.card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+  margin: 2em;
+}
+.conteiner {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  background-color:#FCA311;
+  color: #000000;
+  
+}
+
+
+.videogameImg {
+  height: 300px;
+  width: 270px;
+  object-fit: cover;
+  border-radius: 10px;
+  
+}
+
+.itemsName {
+  color: #000000;
+  padding: 0 20px 20px;
+  text-decoration:none;
+  
+}
+
+h3{
+  padding-left: 20px;
+}
+
