@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import style from "./Forms.module.css";
+import { validate } from "../../helpers/validate";
 
 const Form = () => {
   // traigo los generos del global
@@ -34,32 +35,62 @@ const Form = () => {
     genres: [],
   });
 
-  // const [error, setError] = useState({
-  //   name: "",
-  //   description: "",
-  // });
+  const [errors, setErrors] = useState({
+    name: "",
+    description: "",
+    released: "",
+    rating: "",
+    platforms: '',
+    genres: '',
+  });
 
-  // const validate = () => {};
+  
 
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-    setForm({ ...form, [property]: value });
+
+    setErrors(validate({
+      ...form, 
+      [property ]: value}))
+
+    setForm({ ...form,
+       [property]: value,
+       
+      
+      });
+
+
   };
-  console.log(form);
+  
 
-  const submitHandler = (event) => {
+  const handlerSubmit = (event) => {
     event.preventDefault();
+    if(Object.keys(errors).length === 0){
 
-    axios
-      .post("http://localhost:3001/videogame", form)
-      .then((res) => console.log(res.data));
-    alert(`${form.name} Creado Correctamente`);
+      axios
+      .post("http://localhost:3001/videogames", form)
+      .then((res) => alert(res.data))
+      .catch((err) => alert(err));
+      alert('Videogame created 👌');
+      setForm({ //seteo todo mi input en cero
+        name: '',
+        image:'',
+        description: '',
+        released: '',
+        rating: '',
+        genres: [],
+        platforms: [],
+})
+    }else{
+      alert('ERROR: llenar los campos que falten  😕');
+    }
   };
 
   // +++++++++++++++++++++++
 
   const handleGenre = (event) => {
+    
     setForm({
       ...form,
       genres: [...new Set([...form.genres, event.target.value])],
@@ -89,7 +120,7 @@ const Form = () => {
 
   return (
     <div className={style.container}>
-      <form className={style.formcontainer} onSubmit={submitHandler}>
+      <form className={style.formcontainer} onSubmit={handlerSubmit}>
         <h2>Create a video game </h2>
         <div className={style.inputs}>
           <label>Nombre: </label>
@@ -101,6 +132,7 @@ const Form = () => {
             placeholder="Name"
             autoComplete="off"
           ></input>
+          {errors.name && <p className={style.errorText}>{errors.name}</p>}
         </div>
 
         <div className={style.inputs}>
@@ -112,6 +144,7 @@ const Form = () => {
             onChange={changeHandler}
             placeholder="Description..."
           />
+          {/* {errors.description && <p className={style.errorText}>{errors.description}</p>} */}
         </div>
         <div className={style.fechaYraiting}>
           <div className={style.fecha}>
@@ -123,6 +156,7 @@ const Form = () => {
               value={form.released}
               onChange={changeHandler}
             ></input>
+            {!form.released && <p className={style.errorSelectText}>Select a Date</p>}
           </div>
 
           <div className={style.rating}>
@@ -136,6 +170,7 @@ const Form = () => {
               maxLength="1"
               placeholder="Rate from 1 to 5"
             />
+          {errors.rating && <p className={style.errorSelectText}>{errors.rating}</p>}
           </div>
         </div>
         {/* Plataformas**************************** */}
@@ -152,12 +187,13 @@ const Form = () => {
                   </option>
                 ))}
             </select>
+            {errors.platforms && <p className={style.errorSelectText}>{errors.platforms}</p>}
           </div>
 
           {/* delete plataform */}
 
           <div className={style.genresValues}>
-            {form.platforms.map((platform,index) => (
+            {form.platforms.map((platform, index) => (
               <div key={index} className={style.genresvaluesdiv}>
                 <p>{platform}</p>
                 <button
@@ -171,21 +207,7 @@ const Form = () => {
               </div>
             ))}
           </div>
-
         </div>
-
-        {/* <div className={style.namePlataforma}>
-          <label>
-            <strong>Platforms: </strong>
-          </label>
-          <div className={style.platdiv}>
-            <div>
-              <input name="PC" type="checkbox" value={form.platforms}  onChange={handlePlatform} />
-              <label htmlFor="PC">PC.</label>
-            </div>
-            
-          </div>
-        </div> */}
 
         {/* Genero******************** */}
 
@@ -202,6 +224,7 @@ const Form = () => {
                 );
               })}
             </select>
+            {errors.genres && <p className={style.errorSelectText}>{errors.genres}</p>}
           </div>
 
           <div className={style.genresValues}>
@@ -226,13 +249,6 @@ const Form = () => {
         {/* <div className={style.inputs}>
           <label>ImagenUrl: </label>
           <input type="text" name="background_image" value={form.image} onChange={changeHandler}></input>
-        </div> */}
-
-        {/* <div className={style.options}>
-          <label>Plafomrs: </label> <br/>
-          <label>xbox: </label>
-          <input type="checkbox" name="background_image"></input>
-          
         </div> */}
 
         <button type="submit"> CREATE </button>

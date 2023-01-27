@@ -1,45 +1,29 @@
 import React from "react";
 import style from "./Paginado.module.css";
 
-const Paginado = () => {
+const Paginado = ({gamesPerPage, videGames, actualPage}) => {
   
- 
+    const pageNumbers = [];
+    //para obtener el num de paginas divido el total de juegos entre el num de juegos por page
+    const numPages = Math.ceil(videGames / gamesPerPage);
+  
+    for (let i = 1; i <= numPages; i++) {
+      pageNumbers.push(i)//lo pusheo en pageNumbers
+    }
 
   return (
-    // <div className={style.paginado}>
-    //   {pageNumbers &&
-    //     pageNumbers.map((number) => (
-    //       <button
-    //        key={number}
-    //         className={style.esilo}
-    //         onClick={() => paginado(number)}>
-    //         {number}
-    //       </button>
-    //     ))}
-    // </div>
     <div className={style.paginado}>
-    <div >
-        <button className={style.esilo}>1</button>
+      {pageNumbers &&
+        pageNumbers.map((number) => (
+          <button
+           key={number}
+            className={style.esilo}
+            onClick={() => actualPage(number)}>
+            {number}
+          </button>
+        ))}
     </div>
-    <div >
-        <button className={style.esilo}>2</button>
-    </div>
-    <div >
-        <button className={style.esilo}>3</button>
-    </div>
-    <div >
-        <button className={style.esilo}>4</button>
-    </div>
-    <div >
-        <button className={style.esilo}>5</button>
-    </div>
-    <div >
-        <button className={style.esilo}>6</button>
-    </div>
-    <div >
-        <button className={style.esilo}>7</button>
-    </div>
-</div>
+
   );
 };
 
