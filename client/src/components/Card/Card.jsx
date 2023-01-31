@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import style from "./Card.module.css";
 
-const Card = ({ name, image, genres,id }) => {
-  // const listItems = genres?.map((genre) => <li key={id}>{genre}</li>);
-  
+const Card = ({ name, image, genres, id, }) => {
+  console.log(genres)
   return (
     <>
       <div  className={style.card}>
-        <div key={id} className={style.conteiner}>
+        <div  className={style.conteiner}>
           <div className={style.links}>
             <Link to={`/videogames/${id}`}>
               <img src={image} alt="Fotos" className={style.videogameImg} />
@@ -17,7 +16,13 @@ const Card = ({ name, image, genres,id }) => {
 
           <div className={style.itemsgenres}>
             <h3> Genres</h3>
-            {/* <ul className={style.itemsGenres}> {listItems} </ul> */}
+            <ul>
+              {
+              genres && genres.map((genre) => 
+              <li key={genre}> {genre} </li>)
+              } 
+              </ul>
+              
           </div>
         </div>
       </div>

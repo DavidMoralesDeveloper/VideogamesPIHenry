@@ -8,13 +8,11 @@ import {useParams} from 'react-router-dom'
 const Detail = () => {
   const {id} = useParams()
   const videogame = useSelector(state=>state.videogameDetail)
-  console.log(videogame)
-
   const dispatch = useDispatch()
   
   useEffect(()=>{
     dispatch(getGameById(id))
-  },[id])
+  },[])
 
   return (
     <>
@@ -41,19 +39,11 @@ const Detail = () => {
               <div className={style.infoextraUl}>
                 <div  className={style.tres}>
                   <h3>Genres:</h3>
-                {/* <ul>
-                {videogame.genres.map((genre) => (
-                  <li>{genre}</li>
-                ))}
-              </ul> */}
+                  {videogame.genres && videogame.genres.map(genre => <p key={genre}> {genre} </p>)}
                 </div>
                 <div  className={style.cuatro}>
                 <h3>Platforms:</h3>
-                {/* <ul>
-                {videogame.platforms.map((platform) => (
-                  <li>{platform}</li>
-                ))}
-              </ul> */}
+                  {videogame.platforms && videogame.platforms.map(plataform => <p key={plataform}>{plataform}</p> )}
                 </div>
               
               </div>

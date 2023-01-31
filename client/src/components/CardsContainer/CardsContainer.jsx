@@ -35,10 +35,12 @@ const CardsContainer = () => {
       {currentGames.map((videoGame) => {
         return (
           <Card
+            key={videoGame.id}
             id={videoGame.id}
             image={videoGame.image}
             name={videoGame.name}
             genres={videoGame.genres}
+            
           />
         );
       })}

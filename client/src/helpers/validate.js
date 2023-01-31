@@ -1,9 +1,9 @@
-const regexName = /\d/i;
+
 
 export const validate = (form) => {
   const errors = {};
 
-    if( form.name.length < 3 || regexName.test(form.name))
+    if( form.name.length < 3 )
       errors.name = "Please, type a name with at least 3 characters and only letter";
 
     if(form.rating === '' || form.rating > 5 )

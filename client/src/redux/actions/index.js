@@ -5,6 +5,7 @@ export const GET_BY_NAME = 'GET_BY_NAME'
 export const GET_GAME_BY_ID = 'GET_GAME_BY_ID'
 export const GET_GENRES = 'GET_GENRES'
 export const FILTER_BY_GENRE = 'FILTER_BY_GENRE'
+export const ORDER_BY_NAME = 'ORDER_BY_NAME'
 
 //All
 export const getGames = (dispatch) => {
@@ -22,10 +23,14 @@ export const getGames = (dispatch) => {
 export const searchByName = (name) =>{
     return async function (dispatch) {
          
-        const apiData = await axios.get(`http://localhost:3001/videogames?name=${name}`)      
+        try {
+            const apiData = await axios.get(`http://localhost:3001/videogames?name=${name}`)      
 
-        const videogames = apiData.data
-        dispatch({type:GET_BY_NAME, payload: videogames  })
+        const names  = apiData.data
+        dispatch({type:GET_BY_NAME, payload: names })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
@@ -56,8 +61,18 @@ export const getGenres = (dispatch)=> {
 
 // Genres filter
 export function filterVideogamesByGenre(payload) { //el payload es el value del input
+    console.log(payload)
     return  {
         type: FILTER_BY_GENRE,
+        payload
+    }
+}
+
+//alphabet
+export function orderByName(payload) { 
+    console.log(payload)
+    return {
+        type: ORDER_BY_NAME,
         payload
     }
 }

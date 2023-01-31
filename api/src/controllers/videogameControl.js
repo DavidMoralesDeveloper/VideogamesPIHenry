@@ -28,12 +28,23 @@ const createVideoGame = async (name, description, relesed, rating, platforms, im
 const getAllVideGames = async () => {
  
   const DBvideogames = await Videogame.findAll({
-    attributes: ['name','image','id'],
-    include: [{ model: Genre, attributes: ['name'] }]  
+    attributes: ['name','image','id' ,],
+    include: [{ model: Genre, attributes: ['name'], through: {
+      attributes: [],
+    }, }]  
 }) //bdd
+const gamesDB = DBvideogames.map((game) => {
+  return {
+    id: game.id,
+    name: game.name,
+    image: game.image,
+    genres: game.genres?.map(el => el.name),
+  }
+})
+
 
   let pages = 0;//cada pagina trae 20 games , itero el while 5 veces 
-  let results = [...DBvideogames]; //sumo lo que tengo en la DB
+  let results = [...gamesDB]; //sumo lo que tengo en la DB
   let apiVideogames = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`);
   while (pages < 5) {
     pages++;
@@ -98,7 +109,20 @@ const getVideoGameById = async (id, source) => {
 
     return apiGame
   } else {
-    return await Videogame.findByPk(id, { include: { model: Genre } });
+     const dataDB = (await Videogame.findByPk(id,  {
+      attributes: ['id', 'name', 'image', 'description', 'released', 'rating', 'platforms'],
+      include: [{ model: Genre, attributes: ['name'], through: { attributes: [] } }]
+    }));
+    return {
+      id: dataDB.id,
+      name: dataDB.name,
+      image: dataDB.image,
+      description: dataDB.description,
+      released: dataDB.released,
+      rating: dataDB.rating,
+      platforms: dataDB.platforms,
+      genres: dataDB.genres?.map(el => el.name),
+    }
   }
 
 

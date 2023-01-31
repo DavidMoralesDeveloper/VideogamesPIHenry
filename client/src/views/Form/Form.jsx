@@ -46,13 +46,19 @@ const Form = () => {
 
   
 
-  const changeHandler = (event) => {
+  const changeHandler = (event, ) => {
     const property = event.target.name;
     const value = event.target.value;
+    // const id = event.target.parentNode.id
+    // if(id === 'plataforms'){
+      
+    //   }
 
     setErrors(validate({
       ...form, 
       [property ]: value}))
+
+      
 
     setForm({ ...form,
        [property]: value,
@@ -90,7 +96,9 @@ const Form = () => {
   // +++++++++++++++++++++++
 
   const handleGenre = (event) => {
-    
+  
+  
+
     setForm({
       ...form,
       genres: [...new Set([...form.genres, event.target.value])],
@@ -105,6 +113,7 @@ const Form = () => {
   };
 
   const handlePlatform = (event) => {
+
     setForm({
       ...form,
       platforms: [...new Set([...form.platforms, event.target.value])],
@@ -176,9 +185,9 @@ const Form = () => {
         {/* Plataformas**************************** */}
 
         <div className={style.containergenres}>
-          <div className={style.genres}>
+          <div id='plataforms' className={style.genres}>
             <label>Platforms: </label> <br />
-            <select onChange={(event) => handlePlatform(event)}>
+            <select  onChange={handlePlatform}>
               <option value="all">All</option>
               {platformsOptions &&
                 platformsOptions.map((plataform, index) => (
@@ -193,8 +202,8 @@ const Form = () => {
           {/* delete plataform */}
 
           <div className={style.genresValues}>
-            {form.platforms.map((platform, index) => (
-              <div key={index} className={style.genresvaluesdiv}>
+            {form.platforms.map((platform) => (
+              <div key={platform} className={style.genresvaluesdiv}>
                 <p>{platform}</p>
                 <button
                   onClick={() => handleDeletePlataform(platform)}
