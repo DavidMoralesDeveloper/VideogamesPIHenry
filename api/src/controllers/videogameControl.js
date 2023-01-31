@@ -39,6 +39,7 @@ const gamesDB = DBvideogames.map((game) => {
     name: game.name,
     image: game.image,
     genres: game.genres?.map(el => el.name),
+    create: true
   }
 })
 
@@ -55,6 +56,7 @@ const gamesDB = DBvideogames.map((game) => {
         image: game.background_image,
         name: game.name,
         genres: game.genres.map(el => el.name),
+        create: false
       }
     });
     results = [...results, ...apiGames]

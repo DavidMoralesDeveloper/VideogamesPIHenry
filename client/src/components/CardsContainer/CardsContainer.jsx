@@ -8,6 +8,7 @@ const CardsContainer = () => {
 
 
   const videGames = useSelector(state=>state.videogames)
+  console.log(videGames)
   //estamirando al estado global
 
   //Estados para el paginado

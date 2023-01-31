@@ -6,6 +6,7 @@ export const GET_GAME_BY_ID = 'GET_GAME_BY_ID'
 export const GET_GENRES = 'GET_GENRES'
 export const FILTER_BY_GENRE = 'FILTER_BY_GENRE'
 export const ORDER_BY_NAME = 'ORDER_BY_NAME'
+export const ORDER_BY_CREATE = 'ORDER_BY_CREATE'
 
 //All
 export const getGames = (dispatch) => {
@@ -73,6 +74,15 @@ export function orderByName(payload) {
     console.log(payload)
     return {
         type: ORDER_BY_NAME,
+        payload
+    }
+}
+
+//create
+export function orderByCreate(payload) { 
+    console.log(payload)
+    return {
+        type: ORDER_BY_CREATE,
         payload
     }
 }

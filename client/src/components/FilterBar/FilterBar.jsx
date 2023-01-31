@@ -1,13 +1,20 @@
-// import {useState} from "react";
+import {useState} from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getGames , filterVideogamesByGenre } from "../../redux/actions";
+import {
+   getGames , 
+   filterVideogamesByGenre, 
+   orderByName,
+   orderByCreate
+   } from "../../redux/actions";
 import SerchBar from "../SerchBar/SerchBar";
 import style from "./FilterBar.module.css";
 
 const FilterBar = () => {
   const genres = useSelector((state) => state.genres);
   const dispatch = useDispatch();
+
+  const [/*order*/, setOrder] = useState('');
 
   const handleClickReset = (e) => {
     e.preventDefault();
@@ -18,17 +25,29 @@ const FilterBar = () => {
   function handleFilterGenre(event){     
     dispatch(filterVideogamesByGenre(event.target.value));    
     };
+  function handleFilterName(event){   
+    dispatch(orderByName(event.target.value)); 
+    setOrder(event.target.value)
+    };
+  function handleFilterCreate(event){   
+    dispatch(orderByCreate(event.target.value)); 
+    
+    };
+
+   
 
   return (
     <div className={style.container}>
       <div className={style.butons}>
         <SerchBar />
+        
         <button
           className={style.buttonFilterNav}
           onClick={(e) => handleClickReset(e)}
         >
           RESET
         </button>
+
       </div>
 
       <div className={style.filterBar}>
@@ -45,19 +64,27 @@ const FilterBar = () => {
           ))}
         </select>
 
+         {/* alfabétic   */}
+         <select 
+        className="alphabet" 
+        onChange={(event) => handleFilterName(event)}
+        >
+          <option value="alphabet">Alphabet</option>
+          <option value="atoz">A to Z</option>
+          <option value="ztoa">Z to A</option>
+        </select>
+
         {/* juego creado o viene de api  */}
-        <select className="create">
+        <select 
+        className="create"
+        onChange={(event) => handleFilterCreate(event)}
+        >
           <option value="all">Existing or Created</option>
           <option value="existing">Existing</option>
           <option value="created">Created</option>
         </select>
 
-        {/* alfabétic  onChange={(event) => handleSort(event)} */}
-        <select className="alphabet" >
-          <option value="alphabet">Alphabet</option>
-          <option value="atoz">A to Z</option>
-          <option value="ztoa">Z to A</option>
-        </select>
+       
 
         {/* raiting */}
         <select className="raiting">
