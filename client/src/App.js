@@ -1,5 +1,5 @@
 import './App.css';
-import {Home, Landing,Form,Detail} from './views/index';
+import {Home, Landing, Form, Detail, NotFound } from './views/index';
 import NavBar from './components/Navbar/NavBar';
 
 import {Route, useLocation,  } from 'react-router-dom'
@@ -17,6 +17,8 @@ function App() {
       <Route  path='/home' render={ ()=><Home /> }  />
       <Route  path='/create' component={Form}  />
       <Route  path='/videogames/:id' component={Detail}  />
+      {/* <Route exact path='*' component={Landing} /> */}
+
 
     </div>
   );

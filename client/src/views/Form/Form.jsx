@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import style from "./Forms.module.css";
 import { validate } from "../../helpers/validate";
+import Modal from "../../components/Modal/Modal";
 
 const Form = () => {
   // traigo los generos del global
@@ -40,65 +41,55 @@ const Form = () => {
     description: "",
     released: "",
     rating: "",
-    platforms: '',
-    genres: '',
+    platforms: "",
+    genres: "",
   });
 
-  
+  //modal
+  const [estadoModal, setEstadoModal] = useState(false)
 
-  const changeHandler = (event, ) => {
+  const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-    // const id = event.target.parentNode.id
-    // if(id === 'plataforms'){
-      
-    //   }
 
-    setErrors(validate({
-      ...form, 
-      [property ]: value}))
+    setErrors(
+      validate({
+        ...form,
+        [property]: value,
+      })
+    );
 
-      
-
-    setForm({ ...form,
-       [property]: value,
-       
-      
-      });
-
-
+    setForm({ ...form, [property]: value });
   };
-  
 
   const handlerSubmit = (event) => {
     event.preventDefault();
-    if(Object.keys(errors).length === 0){
-
+    if (Object.keys(errors).length === 0) {
       axios
-      .post("http://localhost:3001/videogames", form)
-      .then((res) => alert(res.data))
-      .catch((err) => alert(err));
-      alert('Videogame created 👌');
-      setForm({ //seteo todo mi input en cero
-        name: '',
-        image:'',
-        description: '',
-        released: '',
-        rating: '',
+        .post("http://localhost:3001/videogames", form)
+        .then((res) => console.log(res.data))
+        .catch((err) => alert(err));
+
+      setEstadoModal(!estadoModal)
+
+      setForm({
+        //seteo todo mi input en cero
+        name: "",
+        image: "",
+        description: "",
+        released: "",
+        rating: "",
         genres: [],
         platforms: [],
-})
-    }else{
-      alert('ERROR: llenar los campos que falten  😕');
+      });
+    } else {
+      alert("ERROR: llenar los campos que falten  😕");
     }
   };
 
   // +++++++++++++++++++++++
 
   const handleGenre = (event) => {
-  
-  
-
     setForm({
       ...form,
       genres: [...new Set([...form.genres, event.target.value])],
@@ -113,7 +104,6 @@ const Form = () => {
   };
 
   const handlePlatform = (event) => {
-
     setForm({
       ...form,
       platforms: [...new Set([...form.platforms, event.target.value])],
@@ -165,7 +155,9 @@ const Form = () => {
               value={form.released}
               onChange={changeHandler}
             ></input>
-            {!form.released && <p className={style.errorSelectText}>Select a Date</p>}
+            {!form.released && (
+              <p className={style.errorSelectText}>Select a Date</p>
+            )}
           </div>
 
           <div className={style.rating}>
@@ -179,89 +171,98 @@ const Form = () => {
               maxLength="1"
               placeholder="Rate from 1 to 5"
             />
-          {errors.rating && <p className={style.errorSelectText}>{errors.rating}</p>}
+            {errors.rating && (
+              <p className={style.errorSelectText}>{errors.rating}</p>
+            )}
           </div>
         </div>
         {/* Plataformas**************************** */}
+        <div>
+          <div className={style.containergenres}>
+            <div id="plataforms" className={style.genres}>
+              <label>Platforms: </label> <br />
+              <select onChange={handlePlatform}>
+                <option value="all">All</option>
+                {platformsOptions &&
+                  platformsOptions.map((plataform, index) => (
+                    <option key={index} value={plataform}>
+                      {plataform}
+                    </option>
+                  ))}
+              </select>
+              {errors.platforms && (
+                <p className={style.errorSelectText}>{errors.platforms}</p>
+              )}
+            </div>
 
-        <div className={style.containergenres}>
-          <div id='plataforms' className={style.genres}>
-            <label>Platforms: </label> <br />
-            <select  onChange={handlePlatform}>
-              <option value="all">All</option>
-              {platformsOptions &&
-                platformsOptions.map((plataform, index) => (
-                  <option key={index} value={plataform}>
-                    {plataform}
-                  </option>
-                ))}
-            </select>
-            {errors.platforms && <p className={style.errorSelectText}>{errors.platforms}</p>}
+            {/* delete plataform */}
+
+            <div className={style.genresValues}>
+              {form.platforms.map((platform) => (
+                <div key={platform} className={style.genresvaluesdiv}>
+                  <p>{platform}</p>
+                  <button
+                    onClick={() => handleDeletePlataform(platform)}
+                    key={platform.id}
+                    id={platform.id}
+                    value={platform.name}
+                  >
+                    <span>X</span>
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* delete plataform */}
+          {/* Genero******************** */}
 
-          <div className={style.genresValues}>
-            {form.platforms.map((platform) => (
-              <div key={platform} className={style.genresvaluesdiv}>
-                <p>{platform}</p>
-                <button
-                  onClick={() => handleDeletePlataform(platform)}
-                  key={platform.id}
-                  id={platform.id}
-                  value={platform.name}
-                >
-                  <span>X</span>
-                </button>
-              </div>
-            ))}
+          <div className={style.containergenres}>
+            <div className={style.genres}>
+              <label>Generos: </label> <br />
+              <select onChange={(event) => handleGenre(event)}>
+                <option value="all">All</option>
+                {genres?.map((game) => {
+                  return (
+                    <option key={game.id} value={game.name}>
+                      {game.name}
+                    </option>
+                  );
+                })}
+              </select>
+              {errors.genres && (
+                <p className={style.errorSelectText}>{errors.genres}</p>
+              )}
+            </div>
+
+            <div className={style.genresValues}>
+              {form.genres.map((game) => (
+                <div key={game} className={style.genresvaluesdiv}>
+                  <p>{game}</p>
+                  <button
+                    onClick={() => handleDeleteGenre(game)}
+                    key={game.id}
+                    id={game.id}
+                    value={game.name}
+                  >
+                    <span>X</span>
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Genero******************** */}
-
-        <div className={style.containergenres}>
-          <div className={style.genres}>
-            <label>Generos: </label> <br />
-            <select onChange={(event) => handleGenre(event)}>
-              <option value="all">All</option>
-              {genres?.map((game) => {
-                return (
-                  <option key={game.id} value={game.name}>
-                    {game.name}
-                  </option>
-                );
-              })}
-            </select>
-            {errors.genres && <p className={style.errorSelectText}>{errors.genres}</p>}
-          </div>
-
-          <div className={style.genresValues}>
-            {form.genres.map((game) => (
-              <div key={game} className={style.genresvaluesdiv}>
-                <p>{game}</p>
-                <button
-                  onClick={() => handleDeleteGenre(game)}
-                  key={game.id}
-                  id={game.id}
-                  value={game.name}
-                >
-                  <span>X</span>
-                </button>
-              </div>
-            ))}
-          </div>
+        <div className={style.createDiv}>
+          <button type="submit" className={style.create}>
+            {" "}
+            CREATE{" "}
+          </button>
         </div>
-
-        {/* +++++++++++++++++++++++++++++++ */}
-
-        {/* <div className={style.inputs}>
-          <label>ImagenUrl: </label>
-          <input type="text" name="background_image" value={form.image} onChange={changeHandler}></input>
-        </div> */}
-
-        <button type="submit"> CREATE </button>
       </form>
+
+      <Modal 
+      estado={estadoModal}
+      />
     </div>
   );
 };

@@ -62,7 +62,6 @@ export const getGenres = (dispatch)=> {
 
 // Genres filter
 export function filterVideogamesByGenre(payload) { //el payload es el value del input
-    console.log(payload)
     return  {
         type: FILTER_BY_GENRE,
         payload
@@ -71,7 +70,6 @@ export function filterVideogamesByGenre(payload) { //el payload es el value del 
 
 //alphabet
 export function orderByName(payload) { 
-    console.log(payload)
     return {
         type: ORDER_BY_NAME,
         payload

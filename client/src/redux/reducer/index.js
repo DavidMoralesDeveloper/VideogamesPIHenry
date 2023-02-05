@@ -49,23 +49,21 @@ const rootReducer = (state = initialState, action) => {
             return { ...state, videogames: genresFiltered } //modifico este estado , y arriba queda intacto por si vuelvo
 
         case ORDER_BY_NAME:
-            const allGames3 = state.videogamesFilters
+           
             let orderList = state.videogames.sort((a, b) => {
                 if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
                 if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
                 return 0
             })
-            // const nameFiltered = action.payload === 'alphabet' && allGames
+
             const nameFilter = action.payload === 'atoz'
             ? orderList
             :orderList = orderList.reverse() 
             
-            console.log(orderList)
+            
             return {
                 ...state,
-                videogames: action.payload ==='alphabet'
-                ?allGames3
-                :nameFilter
+                videogames: nameFilter
             }
 
         case ORDER_BY_CREATE:
