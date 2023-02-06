@@ -70,7 +70,7 @@ const Form = () => {
         .then((res) => console.log(res.data))
         .catch((err) => alert(err));
 
-      setEstadoModal(!estadoModal)
+      setEstadoModal(!estadoModal) //aparece modal 
 
       setForm({
         //seteo todo mi input en cero
@@ -254,7 +254,6 @@ const Form = () => {
 
         <div className={style.createDiv}>
           <button type="submit" className={style.create}>
-            {" "}
             CREATE{" "}
           </button>
         </div>

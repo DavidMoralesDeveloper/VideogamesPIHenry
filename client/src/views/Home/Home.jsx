@@ -32,8 +32,8 @@ const Home = () => {
   }
 
   //para filter
-  const handlePage = (event) => {
-    setCurrentPage(event) //deberia seatear el estado
+  const handlePage = (num) => {
+    setCurrentPage(num) //deberia seatear el estado
 
 }
 

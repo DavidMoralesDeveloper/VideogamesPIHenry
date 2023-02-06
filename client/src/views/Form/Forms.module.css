@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ccc;
+  /* background-color: #FCA311; */
+  background-image: url(https://img.freepik.com/foto-gratis/desierto-sombras_1048-2611.jpg?w=2000);
 
 }
 
@@ -54,13 +55,13 @@ textarea {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  
+  justify-content: center; 
 }
 
 .genresvaluesdiv{
   padding: 10px;
   text-align: center;
+  background-color: rgb(200, 224, 238);
 }
 
 .containerPG{
@@ -146,7 +147,7 @@ select {
   margin: 3px;
   margin-left: 25px;
   margin-bottom: 25px;
-  color: rgb(215, 104, 25);
+  color: rgb(205, 13, 13);
   justify-content: flex-start;
 }
 

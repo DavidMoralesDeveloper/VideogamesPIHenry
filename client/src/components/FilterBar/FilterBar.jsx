@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
@@ -14,7 +14,8 @@ const FilterBar = ({ handlePage }) => {
   const genres = useSelector((state) => state.genres);
   const dispatch = useDispatch();
 
-  const [, setOrder] = useState("");
+  const [orden, setOrden] = useState("");
+ 
 
   const handleClickReset = (e) => {
     e.preventDefault();
@@ -29,7 +30,7 @@ const FilterBar = ({ handlePage }) => {
   function handleFilterName(event) {
     dispatch(orderByName(event.target.value));
     handlePage(1);
-    setOrder(event.target.value);
+    setOrden(`Ordenado ${event.target.value}`)
   }
 
   function handleFilterCreate(event) {

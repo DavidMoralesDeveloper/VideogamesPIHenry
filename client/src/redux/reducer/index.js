@@ -21,6 +21,7 @@ const initialState = {
 }
 
 const rootReducer = (state = initialState, action) => {
+    
     switch (action.type) {
         case GET_VIDEOGAMES:
             return {
@@ -31,10 +32,11 @@ const rootReducer = (state = initialState, action) => {
         //redux no modifica el estado , redux pisa el estado incorecto => (state.action = action.payload)
         //ya tengo mi estado global , cardContainers esta mirando a redux
         case GET_BY_NAME:
-            return { ...state, videogames: action.payload }
+            
+            return { ...state, videogames: action.payload}
 
         case GET_GAME_BY_ID:
-            return { ...state, videogameDetail: action.payload }
+            return { ...state, videogameDetail: action.payload  }
 
         case GET_GENRES:
             return { ...state, genres: action.payload }
@@ -49,8 +51,10 @@ const rootReducer = (state = initialState, action) => {
             return { ...state, videogames: genresFiltered } //modifico este estado , y arriba queda intacto por si vuelvo
 
         case ORDER_BY_NAME:
-           
-            let orderList = state.videogames.sort((a, b) => {
+
+            
+            const allGames4 = state.videogamesFilters;
+            let orderList = allGames4.sort((a, b) => {
                 if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
                 if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
                 return 0
@@ -62,8 +66,12 @@ const rootReducer = (state = initialState, action) => {
             
             
             return {
+                // ...state,
+                // videogames: nameFilter
                 ...state,
-                videogames: nameFilter
+                videogames: action.payload = 'alphabet'
+                ?allGames4
+                :nameFilter
             }
 
         case ORDER_BY_CREATE:

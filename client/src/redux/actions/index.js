@@ -70,6 +70,7 @@ export function filterVideogamesByGenre(payload) { //el payload es el value del 
 
 //alphabet
 export function orderByName(payload) { 
+    console.log(payload)
     return {
         type: ORDER_BY_NAME,
         payload
